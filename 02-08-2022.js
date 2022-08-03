@@ -1,33 +1,24 @@
-function prime(num){
-    for(let i = 2; i < num; i++){
-        if(num % i === 0) {
-            return false
-        }
-    }
-    return true
-}
 
 function gap(g, m, n) {
-    let primes = [] 
-   for(let i = m; i < n; i++){
-        if (prime(i)){
-            primes.push(i)
+    let primes = 0 
+    let isPrime = function(num){
+        for(let i = 2; i < num; i++){
+            if(num % i === 0) {
+                return false
+            }
         }
-   }
-let ordenedPrimes = []
-
-  primes.forEach((n,i) =>{
-      ordenedPrimes.push([n,primes[i + 1]])
-  })
-  
-
-    for(let i = 0; i < ordenedPrimes.length; i++){
-        if((ordenedPrimes[i][1] - ordenedPrimes[i][0]) === g ){
-            return ordenedPrimes[i]
-        }
+        return true
     }
-    return  null
+    
+   for(let i = m; i <= n; i++)
+        if (isPrime(i)){
+            if(i - primes == g) return [primes, i]
+            else primes = i
+        }
+        
+
+ return null  
 }
 
 
-gap(8,300,400)
+gap(8,500000000,6000000000)
